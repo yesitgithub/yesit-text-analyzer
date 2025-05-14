@@ -122,5 +122,5 @@ Professional contributions are welcome. Please submit Pull Requests through stan
 - lxml
 
 ## Contact Information
-- Developer: Srinivas K M 
+- Author: [Srinivas K M](https://github.com/srini1812)
 - Email id: 1812srini@gmail.com
