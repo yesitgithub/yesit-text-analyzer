@@ -1,8 +1,8 @@
 """
-Project Name: Text DOcument Analyzer
-Module Name and Version: App25 v1.0
+Project Name: Text Document Analyzer
+Module Name and Version: TextDocumentAnalyzer v1.0
 Author(s): Srinivas K M
-Created On: 09-May-2024
+Created On: 09-May-2025
 Last Modified On: 13-May-2025
 Last Modified by: Srinivas K M
 Description: Application for correcting grammar in documents while preserving formatting
