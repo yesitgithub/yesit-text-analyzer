@@ -26,7 +26,7 @@ Access the application: [TextDocumentAnalyzer](https://textdocanalyer.streamlit.
   - **Ultra Safe Mode**: Creates clean document with perfect compatibility
 
 - **Detailed Error Analysis**
-  - Identifies 20+ types of grammar errors (punctuation, capitalization, etc.)
+  - Identifies the grammar errors (punctuation, capitalization, etc.)
   - Generates visual reports showing error distribution
   - Provides detailed paragraph-by-paragraph correction explanations
 
