@@ -45,13 +45,13 @@ Doc AI optimizes document quality by correcting grammatical errors while maintai
 
 The application processes documents through a sophisticated pipeline that preserves formatting while correcting grammar:
 
-![Document Processing Pipeline](https://github.com/user-attachments/assets/5da90239-b57b-49ca-9a41-30d3808a05e9)
+![Document Processing Pipeline](https://github.com/yesitgithub/yesit-text-analyzer/blob/main/Images/WorkFlow.drawio.png)
 
 ## 💻 Technical Architecture
 
 The application is built with a modular architecture that separates concerns and promotes maintainability:
 
-![Technical Architecture](https://github.com/user-attachments/assets/43d17297-16c2-462f-a083-1274dd2179b5)
+![Technical Architecture](https://github.com/yesitgithub/yesit-text-analyzer/blob/main/Images/Technical%20Architecture.png)
 
 ## 🛠️ Installation
 
@@ -241,13 +241,13 @@ sequenceDiagram
 
 The application performs comprehensive error analysis on the corrections:
 
-![Error Analysis](https://github.com/user-attachments/assets/7a04b5e4-ed88-41ff-9230-df42c02c2182)
+![Error Analysis](https://github.com/yesitgithub/yesit-text-analyzer/blob/main/Images/Error%20Analysis.drawio.png)
 
 ## 🌐 Grammar Correction Process
 
 The application uses language models to correct grammar while preserving meaning and style:
 
-![Grammar Correction Process](https://github.com/user-attachments/assets/b38f7145-2d27-45d5-9e26-021b88f4e89b)
+![Grammar Correction Process](https://github.com/yesitgithub/yesit-text-analyzer/blob/main/Images/Grammar%20Correction%20Process.drawio.png)
 
 ## 📸 Application Screenshots
 
@@ -255,19 +255,20 @@ The application uses language models to correct grammar while preserving meaning
 <summary>Click to view screenshots</summary>
 
 ### Upload Interface
-![Upload Interface](https://github.com/srini1812/Testrepo/blob/main/Front%20page.png)
+![Upload Interface](https://github.com/yesitgithub/yesit-text-analyzer/blob/main/Images/Front%20page.png)
 
 ### Download Results
-![Download Results](https://github.com/srini1812/Testrepo/blob/main/Corrected%20Document.png)
+![Download Results](https://github.com/yesitgithub/yesit-text-analyzer/blob/main/Images/Corrected%20Document.png)
 
 ### Text Comparison
-![Text Comparison](https://github.com/srini1812/Testrepo/blob/main/Text%20Comparison.png)
-
-### Detailed Correction Report
-![Detailed Correction Report](https://github.com/srini1812/Testrepo/blob/main/Detailed%20Error%20Report.png)
+![Text Comparison](https://github.com/yesitgithub/yesit-text-analyzer/blob/main/Images/Text%20Comparison.png)
 
 ### Error Analysis Dashboard
-![Error Analysis Dashboard](https://github.com/srini1812/Testrepo/blob/main/Error%20Analysis.png)
+![Error Analysis Dashboard](https://github.com/yesitgithub/yesit-text-analyzer/blob/main/Images/Error%20Analysis.png)
+
+### Detailed Correction Report
+![Detailed Correction Report](https://github.com/yesitgithub/yesit-text-analyzer/blob/main/Images/Detailed%20Error%20Report.png)
+
 </details>
 
 ## 📖 License
