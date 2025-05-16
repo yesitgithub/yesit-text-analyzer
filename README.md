@@ -1,4 +1,5 @@
-# Text Document Analyzer
+# Doc AI
+
 ![Grammar Correction](https://img.shields.io/badge/Grammar-Correction-blue)
 ![Document Processing](https://img.shields.io/badge/Document-Processing-green)
 ![Streamlit App](https://img.shields.io/badge/Streamlit-App-red)
@@ -9,9 +10,9 @@
 
 ## 📝 Overview
 
-Text Document Analyzer is a powerful application designed to help users improve the grammatical quality of their documents without losing formatting elements like tables, images, and styles. The tool analyzes DOCX and DOC files, identifies and corrects grammar errors, and generates detailed reports on the types of corrections made.
+Doc AI optimizes document quality by correcting grammatical errors while maintaining full formatting integrity. Compatible with DOCX, DOC, and TXT formats, it automatically identifies issues and implements superior word selections. The solution generates comprehensive analytical reports of corrections, enabling enterprises to produce impeccable documentation without sacrificing structural or visual elements—enhancing both efficiency and professional presentation.
 
-Access the application: [TextDocumentAnalyzer](https://textdocanalyer.streamlit.app/)
+**Access the application:** [Doc AI Application](https://docai.streamlit.app/)
 
 ## ✨ Key Features
 
@@ -26,7 +27,7 @@ Access the application: [TextDocumentAnalyzer](https://textdocanalyer.streamlit.
   - **Ultra Safe Mode**: Creates clean document with perfect compatibility
 
 - **Detailed Error Analysis**
-  - Identifies the grammar errors (punctuation, capitalization, etc.)
+  - Identifies grammar errors (punctuation, capitalization, etc.)
   - Generates visual reports showing error distribution
   - Provides detailed paragraph-by-paragraph correction explanations
 
@@ -44,148 +45,20 @@ Access the application: [TextDocumentAnalyzer](https://textdocanalyer.streamlit.
 
 The application processes documents through a sophisticated pipeline that preserves formatting while correcting grammar:
 
-```mermaid
-flowchart LR
-    %% Main user flow
-    User([User]):::user --> Upload[Upload Document]:::action
-    Upload --> Select[Select Mode]:::action
-    Select --> Instruct[Add Instructions]:::action
-    Instruct --> Process[Process Document]:::action
-    
-    %% Processing paths
-    Process --> Decision{Compatibility Mode}:::decision
-    
-    Decision -->|Preserve All| PreserveMode[XMLDocumentCorrector]:::preserve
-    Decision -->|Safe Mode| SafeMode[Text-based Correction]:::safe
-    Decision -->|Ultra Safe| UltraMode[Basic Text Correction]:::ultrasafe
-    
-    %% Preserve All pathway
-    PreserveMode --> PA1[Extract to temp directory]:::preserve
-    PA1 --> PA2[Process document.xml]:::preserve
-    PA2 --> PA3[Batch paragraph processing]:::preserve
-    PA3 --> PA4[Fix headers & footers]:::preserve
-    PA4 --> PA5[Create fully formatted DOCX]:::preserve
-    
-    %% Safe Mode pathway
-    SafeMode --> SA1[Extract text content]:::safe
-    SA1 --> SA2[Split into sections]:::safe
-    SA2 --> SA3[LM grammar correction]:::safe
-    SA3 --> SA4[Create basic formatted doc]:::safe
-    
-    %% Ultra Safe pathway
-    UltraMode --> US1[Extract plain text]:::ultrasafe
-    US1 --> US2[LM correction]:::ultrasafe
-    US2 --> US3[Create clean document]:::ultrasafe
-    
-    %% Analysis stage
-    PA5 --> Analysis[Analyze Corrections]:::analysis
-    SA4 --> Analysis
-    US3 --> Analysis
-    
-    Analysis --> AN1[Compare texts]:::analysis
-    AN1 --> AN2[Identify errors]:::analysis
-    AN2 --> AN3[Generate visualizations]:::analysis
-    
-    %% Results
-    AN3 --> Present[Present Results]:::results
-    Present --> Download[Download Corrected Doc]:::results
-    Present --> ViewReport[View Error Report]:::results
-    
-    %% Language Model API
-    PA3 -.->|API Requests| LM[(Language Model API)]:::lm
-    SA3 -.->|API Requests| LM
-    US2 -.->|API Requests| LM
-    AN2 -.->|Error Classification| LM
-    
-    %% Classes & styling
-    classDef user fill:#F8F8FF,stroke:#333,stroke-width:2px,color:#333
-    classDef action fill:#D7E9F7,stroke:#1D3557,stroke-width:2px,color:#1D3557
-    classDef decision fill:#FFE6E6,stroke:#9E2A2B,stroke-width:2px,color:#9E2A2B
-    classDef preserve fill:#DAEEC7,stroke:#1B4332,stroke-width:2px,color:#1B4332
-    classDef safe fill:#FFF3B0,stroke:#E09F3E,stroke-width:2px,color:#8B4513
-    classDef ultrasafe fill:#FFD6D6,stroke:#9E2A2B,stroke-width:2px,color:#9E2A2B
-    classDef analysis fill:#E9D8FD,stroke:#553C9A,stroke-width:2px,color:#553C9A
-    classDef results fill:#FFC6FF,stroke:#9D4EDD,stroke-width:2px,color:#9D4EDD
-    classDef lm fill:#FFE6E6,stroke:#9E2A2B,stroke-width:2px,color:#9E2A2B
-```
+![Document Processing Pipeline](https://github.com/user-attachments/assets/5da90239-b57b-49ca-9a41-30d3808a05e9)
 
 ## 💻 Technical Architecture
 
 The application is built with a modular architecture that separates concerns and promotes maintainability:
 
-```mermaid
-graph TB
-    %% Node definitions with styling
-    subgraph UI["UI Layer"]
-        style UI fill:#D7E9F7,stroke:#1D3557,stroke-width:2px
-        View["DocumentCorrectionAppView<br/>- Renders interface<br/>- Handles user input<br/>- Displays results"]
-        style View fill:#D7E9F7,stroke:#1D3557,stroke-width:2px,color:#1D3557
-    end
-    
-    subgraph Core["Core Processing"]
-        style Core fill:#D4F1F9,stroke:#05445E,stroke-width:2px
-        Processor["DocumentProcessorForm<br/>- Coordinates document processing<br/>- Determines process workflow<br/>- Integrates components"]
-        style Processor fill:#D4F1F9,stroke:#05445E,stroke-width:2px,color:#05445E
-    end
-    
-    subgraph DocHandling["Document Handling"]
-        style DocHandling fill:#FFF3B0,stroke:#E09F3E,stroke-width:2px
-        XML["XMLDocumentCorrector<br/>- Processes XML structure<br/>- Preserves all formatting"]
-        style XML fill:#FFF3B0,stroke:#E09F3E,stroke-width:2px,color:#8B4513
-        
-        Creator["SafeDocxCreatorForm<br/>- Creates safe document<br/>- Basic formatting preservation"]
-        style Creator fill:#E9D8FD,stroke:#553C9A,stroke-width:2px,color:#553C9A
-        
-        Validator["DocxValidator<br/>- Validates document structure<br/>- Fixes corrupted files"]
-        style Validator fill:#FFD6D6,stroke:#9E2A2B,stroke-width:2px,color:#9E2A2B
-    end
-    
-    subgraph TextProc["Text Processing"]
-        style TextProc fill:#DAEEC7,stroke:#1B4332,stroke-width:2px
-        Corrector["GrammarCorrectorForm<br/>- Handles text correction<br/>- Interfaces with Language Models<br/>- Processes text in sections"]
-        style Corrector fill:#DAEEC7,stroke:#1B4332,stroke-width:2px,color:#1B4332
-    end
-    
-    subgraph Analysis["Analysis & Reporting"]
-        style Analysis fill:#FFC6FF,stroke:#9D4EDD,stroke-width:2px
-        Analyzer["DocumentAnalyzerForm<br/>- Analyzes corrections<br/>- Identifies error types<br/>- Generates reports"]
-        style Analyzer fill:#FFC6FF,stroke:#9D4EDD,stroke-width:2px,color:#9D4EDD
-    end
-    
-    subgraph External["External Services"]
-        style External fill:#FFE6E6,stroke:#9E2A2B,stroke-width:2px
-        LM["Language Model API<br/>- Grammar correction<br/>- Error classification"]
-        style LM fill:#FFE6E6,stroke:#9E2A2B,stroke-width:2px,color:#9E2A2B
-    end
-    
-    %% Major data flows
-    View --> Processor
-    Processor --> View
-    
-    %% Core processor connections
-    Processor --> Corrector
-    Processor --> XML
-    Processor --> Validator
-    Processor --> Creator
-    Processor --> Analyzer
-    
-    %% Mode-specific workflows
-    Processor --> XML
-    Processor --> Creator
-    Processor --> Creator
-    
-    %% Component interactions
-    XML --> Corrector
-    Analyzer --> Corrector
-    Corrector --> LM
-```
+![Technical Architecture](https://github.com/user-attachments/assets/43d17297-16c2-462f-a083-1274dd2179b5)
 
 ## 🛠️ Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/TextDocumentAnalyzer.git
-cd TextDocumentAnalyzer
+git clone https://github.com/company-name/DocAI.git
+cd DocAI
 
 # Create and activate virtual environment (optional but recommended)
 python -m venv venv
@@ -199,7 +72,6 @@ pip install -r requirements.txt
 
 The application requires the following dependencies:
 
-### requirements.txt
 ```
 streamlit==1.29.0
 python-docx==0.8.11
@@ -216,7 +88,7 @@ pathlib==1.0.1
 
 ```bash
 # Start the application
-streamlit run TextDocumentAnalyzer.py
+streamlit run DocAI.py
 ```
 
 Once running, access the application in your browser at `http://localhost:8501`.
@@ -369,80 +241,34 @@ sequenceDiagram
 
 The application performs comprehensive error analysis on the corrections:
 
-```mermaid
-graph LR
-    A[Original & Corrected Text] --> B[Compare Paragraphs]
-    B --> C[Detect Changed Paragraphs]
-    
-    C --> D[Pattern-Based Error Detection]
-    D --> E{Error Types Detected?}
-    
-    E -->|Yes| F[Categorize Error Types]
-    E -->|No| G[LM-Based Error Classification]
-    G --> F
-    
-    F --> H[Generate Error Statistics]
-    H --> I[Create Visual Reports]
-    
-    I --> J[Pie Chart: Error Types]
-    I --> K[Bar Chart: Top Errors]
-    I --> L[Detailed Error List]
-    
-    %% Add colors to main flow elements
-    style A fill:#f5f5f5,stroke:#d9d9d9,stroke-width:2px
-    style B fill:#e5f2ff,stroke:#99ccff,stroke-width:2px
-    style C fill:#e5f2ff,stroke:#99ccff,stroke-width:2px
-    style D fill:#ffe6cc,stroke:#ffc266,stroke-width:2px
-    style E fill:#ffe6cc,stroke:#ffc266,stroke-width:2px
-    style F fill:#e6ffe6,stroke:#b3ffb3,stroke-width:2px
-    style G fill:#ffe6e6,stroke:#ffb3b3,stroke-width:2px
-    style H fill:#e6f2ff,stroke:#b3d9ff,stroke-width:2px
-    style I fill:#e6f2ff,stroke:#b3d9ff,stroke-width:2px
-    style J fill:#f2e6ff,stroke:#d9b3ff,stroke-width:2px
-    style K fill:#f2e6ff,stroke:#d9b3ff,stroke-width:2px
-    style L fill:#f2e6ff,stroke:#d9b3ff,stroke-width:2px
-```
+![Error Analysis](https://github.com/user-attachments/assets/7a04b5e4-ed88-41ff-9230-df42c02c2182)
 
 ## 🌐 Grammar Correction Process
 
 The application uses language models to correct grammar while preserving meaning and style:
 
-```mermaid
-graph LR
-    %% Define node styles
-    classDef input fill:#D4F1F9,stroke:#05445E,stroke-width:2px,color:#05445E,font-weight:bold
-    classDef process fill:#DAEEC7,stroke:#1B4332,stroke-width:2px,color:#1B4332
-    classDef api fill:#FFE6E6,stroke:#9E2A2B,stroke-width:2px,color:#9E2A2B
-    classDef decision fill:#FFF3B0,stroke:#E09F3E,stroke-width:2px,color:#8B4513,font-weight:bold
-    classDef output fill:#E9D8FD,stroke:#553C9A,stroke-width:2px,color:#553C9A
-    classDef analysis fill:#FFC6FF,stroke:#9D4EDD,stroke-width:2px,color:#9D4EDD
-    classDef error fill:#FFD6D6,stroke:#9E2A2B,stroke-width:2px,color:#9E2A2B
-    
-    A[Text Input]:::input --> B[Split into Sections]:::process
-    B --> C[Create Correction Prompt]:::process
-    
-    subgraph "For Each Section"
-        C -->|API Request| D[Language Model]:::api
-        D -->|Response| E[Extract Corrected Text]:::process
-        E -->|Error?| F{Retry?}:::decision
-        F -->|Yes: Attempts < 3| C
-        F -->|No: Max Retries| G[Use Original Text]:::error
-        E -->|Success| H[Add to Results]:::output
-    end
-    
-    H --> I[Combine Sections]:::output
-    G --> I
-    I --> J[Apply Format Preservation]:::output
-    J --> K[Return Corrected Document]:::output
-    
-    subgraph "Error Analysis"
-        K --> L[Compare Original & Corrected]:::analysis
-        L --> M[Pattern-Based Error Detection]:::analysis
-        M --> N[LM-Based Error Classification]:::analysis
-        N --> O[Generate Error Statistics]:::analysis
-        O --> P[Create Analysis Report]:::analysis
-    end
-```
+![Grammar Correction Process](https://github.com/user-attachments/assets/b38f7145-2d27-45d5-9e26-021b88f4e89b)
+
+## 📸 Application Screenshots
+
+<details>
+<summary>Click to view screenshots</summary>
+
+### Upload Interface
+![Upload Interface](https://github.com/srini1812/Testrepo/blob/main/Front%20page.png)
+
+### Download Results
+![Download Results](https://github.com/srini1812/Testrepo/blob/main/Corrected%20Document.png)
+
+### Text Comparison
+![Text Comparison](https://github.com/srini1812/Testrepo/blob/main/Text%20Comparison.png)
+
+### Detailed Correction Report
+![Detailed Correction Report](https://github.com/srini1812/Testrepo/blob/main/Detailed%20Error%20Report.png)
+
+### Error Analysis Dashboard
+![Error Analysis Dashboard](https://github.com/srini1812/Testrepo/blob/main/Error%20Analysis.png)
+</details>
 
 ## 📖 License
 
@@ -454,6 +280,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Document processing utilizes python-docx and lxml for XML manipulation
 - Visualization components use Plotly and Matplotlib
 
-## Contact Information
+## 👤 Contact Information
+
 - Author: [Srinivas K M](https://github.com/srini1812)
-- Email id: 1812srini@gmail.com
+- Email: 1812srini@gmail.com
